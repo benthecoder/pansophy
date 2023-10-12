@@ -140,7 +140,7 @@ def visualize_knowledge_graph(kg, name, directory):
             penwidth="1.5",
         )
 
-    dot.render(filename=str(filepath))
+    dot.render(filename=str(filepath.stem), directory=str(filepath.parent))
     logging.info(f"Saved graph to: {filepath}")
     return filepath
 

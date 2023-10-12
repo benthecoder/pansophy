@@ -10,6 +10,7 @@ from knowledge_graph import (
     visualize_knowledge_graph_interactive,
 )
 from models import KnowledgeGraph
+from utils import log_directory_tree
 
 logging.basicConfig(level=logging.INFO)
 
@@ -35,7 +36,7 @@ def render_html(html_path: Path):
 def get_file_paths(directory_path, topic):
     topic_filename = topic.replace(" ", "_").lower()
     return (
-        directory_path / f"{topic_filename}.svg.svg",
+        directory_path / f"{topic_filename}.svg",
         directory_path / f"{topic_filename}.html",
     )
 
@@ -49,10 +50,6 @@ def delete_topic_graph(directory_path):
 def render_topic_graph(directory_path, topic):
     svg_path, html_path = get_file_paths(directory_path, topic)
 
-    # Debug: Log all files in the directory
-    files_in_directory = list(directory_path.iterdir())
-    logging.info(f"Files in directory {directory_path}: {files_in_directory}")
-
     if svg_path.exists():
         st.image(str(svg_path))
     else:
@@ -63,8 +60,8 @@ def render_topic_graph(directory_path, topic):
 
 
 def main():
-    items_in_graphs_directory = list(GRAPHS_DIR.rglob("*"))
-    logging.info(f"Items in GRAPHS_DIR ({GRAPHS_DIR}): {items_in_graphs_directory}")
+    # Debug: Recursively log directory structure in tree format
+    log_directory_tree(GRAPHS_DIR)
 
     st.title("Pansophy 📚🧠💡")
 

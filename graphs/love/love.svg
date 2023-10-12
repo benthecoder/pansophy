@@ -1,77 +1,256 @@
-// love
-digraph {
-	bgcolor="#F5F5F5" nodesep=0.5 outputorder=edgesfirst overlap=false pad=0.5 rankdir=TB ranksep=1
-	1 [label=Love color=red fontsize=12 gradientangle=90 shape=ellipse]
-	2 [label="Types of Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	3 [label="Romantic Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	4 [label="Platonic Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	5 [label="Familial Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	6 [label="Self-Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	7 [label="Unconditional Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	8 [label=Eros color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	9 [label=Storge color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	10 [label=Philia color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	11 [label=Agape color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	12 [label="Factors Influencing Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	13 [label=Attraction color=green fontsize=12 gradientangle=90 shape=ellipse]
-	14 [label="Chemical Attraction" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	15 [label="Physical Appearance" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	16 [label="Personality Traits" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	17 [label=Similarities color=green fontsize=12 gradientangle=90 shape=ellipse]
-	18 [label="Cultural Factors" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	19 [label="Attachment Styles" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	20 [label="Secure Attachment" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	21 [label="Anxious Attachment" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	22 [label="Avoidant Attachment" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	23 [label="Factors That Sustain Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	24 [label=Communication color=green fontsize=12 gradientangle=90 shape=ellipse]
-	25 [label=Trust color=green fontsize=12 gradientangle=90 shape=ellipse]
-	26 [label=Intimacy color=green fontsize=12 gradientangle=90 shape=ellipse]
-	27 [label=Empathy color=green fontsize=12 gradientangle=90 shape=ellipse]
-	28 [label=Commitment color=green fontsize=12 gradientangle=90 shape=ellipse]
-	29 [label="Challenges in Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	30 [label=Jealousy color=green fontsize=12 gradientangle=90 shape=ellipse]
-	31 [label=Infidelity color=green fontsize=12 gradientangle=90 shape=ellipse]
-	32 [label=Conflict color=green fontsize=12 gradientangle=90 shape=ellipse]
-	33 [label="Communication Issues" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	34 [label="Relationship Satisfaction" color=green fontsize=12 gradientangle=90 shape=ellipse]
-	35 [label=Longevity color=green fontsize=12 gradientangle=90 shape=ellipse]
-	36 [label="Enduring Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	37 [label="Compassionate Love" color=blue fontsize=12 gradientangle=90 shape=ellipse]
-	1 -> 2 [label="is a type of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	1 -> 12 [label="factors influencing" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	2 -> 3 [label="is a type of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	2 -> 4 [label="is a type of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	2 -> 5 [label="is a type of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	2 -> 6 [label="is a type of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	2 -> 7 [label="is a type of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	3 -> 8 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	4 -> 9 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	5 -> 10 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	7 -> 11 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	12 -> 13 [label=includes arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	12 -> 23 [label=sustains arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	12 -> 29 [label="poses challenges for" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	13 -> 14 [label="is a type of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	13 -> 15 [label=affects arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	13 -> 16 [label=affects arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	13 -> 17 [label="is influenced by" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	13 -> 18 [label="is influenced by" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	13 -> 19 [label="is influenced by" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	19 -> 20 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	19 -> 21 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	19 -> 22 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	23 -> 24 [label="is important for" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	23 -> 25 [label="is important for" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	23 -> 26 [label="is important for" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	23 -> 27 [label="is important for" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	23 -> 28 [label="is important for" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	29 -> 30 [label="is a challenge related to" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	29 -> 31 [label="is a challenge related to" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	29 -> 32 [label="is a challenge related to" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	29 -> 33 [label="is a challenge related to" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	29 -> 34 [label="is a challenge related to" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	29 -> 35 [label="is a challenge related to" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	35 -> 36 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-	35 -> 37 [label="is a subtype of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
-}
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 8.0.5 (20230430.1635)
+ -->
+<!-- Pages: 1 -->
+<svg width="1127pt" height="770pt"
+ viewBox="0.00 0.00 1126.56 769.50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 733.5)">
+<polygon fill="#f5f5f5" stroke="none" points="-36,36 -36,-733.5 1090.56,-733.5 1090.56,36 -36,36"/>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1&#45;&gt;2</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M857.89,-670.56C795.26,-649.76 626.13,-593.62 550.38,-568.47"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="551.08,-566.2 545.79,-566.28 549.98,-569.52 551.08,-566.2"/>
+<text text-anchor="middle" x="750.19" y="-612.2" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 1&#45;&gt;3 -->
+<g id="edge2" class="edge">
+<title>1&#45;&gt;3</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M881.81,-661.24C881.81,-626.49 881.81,-548.03 881.81,-508.19"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="883.56,-508.22 881.81,-503.22 880.06,-508.22 883.56,-508.22"/>
+<text text-anchor="middle" x="912.19" y="-612.2" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 1&#45;&gt;4 -->
+<g id="edge3" class="edge">
+<title>1&#45;&gt;4</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M903.51,-668.34C919.78,-659.47 941.03,-644.97 951.81,-625.5 1013.49,-514.2 997.13,-353 987.99,-292.32"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="989.42,-292.1 986.92,-287.43 985.96,-292.64 989.42,-292.1"/>
+<text text-anchor="middle" x="1024.19" y="-477.95" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 2&#45;&gt;5 -->
+<g id="edge4" class="edge">
+<title>2&#45;&gt;5</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M519.69,-536.87C529.83,-511.6 548.84,-464.25 560.31,-435.68"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="562.68,-436.48 562.91,-431.19 559.43,-435.18 562.68,-436.48"/>
+<text text-anchor="middle" x="579.19" y="-477.95" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 2&#45;&gt;6 -->
+<g id="edge5" class="edge">
+<title>2&#45;&gt;6</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M475.85,-548.77C441.08,-542.34 388.98,-528.67 352.06,-501 329.18,-483.84 311.82,-455.55 301.53,-435.47"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="303.24,-434.96 299.44,-431.26 300.1,-436.52 303.24,-434.96"/>
+<text text-anchor="middle" x="383.19" y="-477.95" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 2&#45;&gt;7 -->
+<g id="edge6" class="edge">
+<title>2&#45;&gt;7</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M474.22,-551.84C421.56,-547.66 325.24,-535.56 251.06,-501 175.26,-465.68 102.66,-396.48 68.75,-361.43"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="69.76,-359.91 65.04,-357.52 67.24,-362.34 69.76,-359.91"/>
+<text text-anchor="middle" x="282.19" y="-477.95" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 2&#45;&gt;8 -->
+<g id="edge7" class="edge">
+<title>2&#45;&gt;8</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M507.32,-536.81C495.59,-497.07 471.58,-396.47 502.06,-321 534.35,-241.09 625.33,-184.84 674.8,-159.17"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="675.26,-160.88 678.91,-157.05 673.66,-157.77 675.26,-160.88"/>
+<text text-anchor="middle" x="533.19" y="-333.95" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 3&#45;&gt;15 -->
+<g id="edge20" class="edge">
+<title>3&#45;&gt;15</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M876.75,-464.9C867.85,-435.3 848.5,-372.7 828.81,-321 825.08,-311.19 820.56,-300.55 816.52,-291.39"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="817.31,-290.88 813.67,-287.02 814.11,-292.3 817.31,-290.88"/>
+<text text-anchor="middle" x="907.06" y="-405.95" font-family="Times,serif" font-size="14.00">is explained by</text>
+</g>
+<!-- 4&#45;&gt;9 -->
+<g id="edge8" class="edge">
+<title>4&#45;&gt;9</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M959.17,-251.22C931.9,-233.4 889.03,-200.78 868.06,-160.5 848.48,-122.87 846.93,-72.26 848.05,-42.88"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="849.88,-43.31 848.36,-38.24 846.38,-43.15 849.88,-43.31"/>
+<text text-anchor="middle" x="899.19" y="-137.45" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 4&#45;&gt;10 -->
+<g id="edge9" class="edge">
+<title>4&#45;&gt;10</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M983.81,-248.71C983.81,-227.55 983.81,-191.6 983.81,-167.7"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="985.56,-167.7 983.81,-162.7 982.06,-167.7 985.56,-167.7"/>
+<text text-anchor="middle" x="1014.19" y="-199.7" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 5&#45;&gt;11 -->
+<g id="edge10" class="edge">
+<title>5&#45;&gt;11</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M568.86,-392.58C568.58,-373.85 570.29,-343.71 582.06,-321 588.62,-308.36 599.42,-297.13 609.85,-288.3"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="611.47,-289.42 614.25,-284.9 609.26,-286.7 611.47,-289.42"/>
+<text text-anchor="middle" x="616.19" y="-333.95" font-family="Times,serif" font-size="14.00">can result in</text>
+</g>
+<!-- 5&#45;&gt;12 -->
+<g id="edge11" class="edge">
+<title>5&#45;&gt;12</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M564.42,-392.69C544.85,-329.98 477.63,-114.56 455.18,-42.61"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="456.31,-42.36 453.15,-38.11 452.97,-43.4 456.31,-42.36"/>
+<text text-anchor="middle" x="530.69" y="-199.7" font-family="Times,serif" font-size="14.00">involves</text>
+</g>
+<!-- 5&#45;&gt;15 -->
+<g id="edge19" class="edge">
+<title>5&#45;&gt;15</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M596.91,-394.92C613.88,-385 635.85,-371.25 653.81,-357 671.66,-342.84 671.57,-333.95 690.31,-321 711.71,-306.22 737.89,-293.82 759.91,-284.73"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="760.33,-285.64 764.3,-282.14 759.01,-282.4 760.33,-285.64"/>
+<text text-anchor="middle" x="732.06" y="-333.95" font-family="Times,serif" font-size="14.00">is explained by</text>
+</g>
+<!-- 6&#45;&gt;12 -->
+<g id="edge12" class="edge">
+<title>6&#45;&gt;12</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M313.99,-394.56C326.55,-385.08 341.39,-371.92 350.81,-357 416.94,-252.31 439.17,-101.34 445.56,-43.14"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="447.51,-43.35 446.29,-38.19 444.03,-42.98 447.51,-43.35"/>
+<text text-anchor="middle" x="439.69" y="-199.7" font-family="Times,serif" font-size="14.00">involves</text>
+</g>
+<!-- 6&#45;&gt;13 -->
+<g id="edge13" class="edge">
+<title>6&#45;&gt;13</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M268.27,-394.37C256.82,-385.02 244.04,-372.03 237.81,-357 228.79,-335.22 238.11,-309.02 247.64,-290.72"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="248.99,-291.05 249.85,-285.83 245.92,-289.38 248.99,-291.05"/>
+<text text-anchor="middle" x="291.81" y="-333.95" font-family="Times,serif" font-size="14.00">can be mistaken for</text>
+</g>
+<!-- 6&#45;&gt;14 -->
+<g id="edge14" class="edge">
+<title>6&#45;&gt;14</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M246.26,-401.22C219.61,-393.75 187.04,-380.37 166.56,-357 150.85,-339.06 145.04,-311.92 142.93,-292.33"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="144.5,-292.31 142.31,-287.49 141.02,-292.62 144.5,-292.31"/>
+<text text-anchor="middle" x="196.44" y="-333.95" font-family="Times,serif" font-size="14.00">can lead to</text>
+</g>
+<!-- 7&#45;&gt;12 -->
+<g id="edge15" class="edge">
+<title>7&#45;&gt;12</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M52.13,-320.7C56.5,-301.53 65.73,-270.49 82.81,-249 175.34,-132.61 343.84,-58.43 414.86,-30.98"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="414.97,-32.04 419.02,-28.62 413.72,-28.78 414.97,-32.04"/>
+<text text-anchor="middle" x="152.69" y="-199.7" font-family="Times,serif" font-size="14.00">involves</text>
+</g>
+<!-- 8&#45;&gt;9 -->
+<g id="edge17" class="edge">
+<title>8&#45;&gt;9</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M718.11,-124.61C727.87,-109.56 743.59,-87.57 761.06,-72 778.16,-56.77 800.26,-43.56 818.13,-34.13"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="818.38,-35.94 822.01,-32.09 816.77,-32.83 818.38,-35.94"/>
+<text text-anchor="middle" x="792.19" y="-75.2" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 8&#45;&gt;12 -->
+<g id="edge16" class="edge">
+<title>8&#45;&gt;12</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M680.97,-128.85C632.32,-105.93 529.88,-57.66 478.53,-33.47"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="479.49,-31.05 474.23,-30.5 478,-34.22 479.49,-31.05"/>
+<text text-anchor="middle" x="616.69" y="-75.2" font-family="Times,serif" font-size="14.00">involves</text>
+</g>
+<!-- 10&#45;&gt;9 -->
+<g id="edge18" class="edge">
+<title>10&#45;&gt;9</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M966.84,-125.99C942.68,-103.89 898.34,-63.36 871.72,-39.03"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="872.52,-37.47 867.65,-35.39 870.16,-40.05 872.52,-37.47"/>
+<text text-anchor="middle" x="955.19" y="-75.2" font-family="Times,serif" font-size="14.00">is a type of</text>
+</g>
+<!-- 15&#45;&gt;2 -->
+<g id="edge21" class="edge">
+<title>15&#45;&gt;2</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M803.18,-285.21C799.7,-304.03 792.23,-334.5 777.81,-357 726.38,-437.28 697.51,-447.18 618.81,-501 596.25,-516.43 568.55,-530.12 547.12,-539.72"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="546.84,-538.82 542.97,-542.45 548.25,-542.02 546.84,-538.82"/>
+<text text-anchor="middle" x="776.06" y="-405.95" font-family="Times,serif" font-size="14.00">relies on</text>
+</g>
+<!-- 15&#45;&gt;8 -->
+<g id="edge22" class="edge">
+<title>15&#45;&gt;8</title>
+<path fill="none" stroke="#a9a9a9" stroke-width="1.5" d="M792.19,-248.97C774.68,-227.09 744.28,-189.09 725.15,-165.17"/>
+<polygon fill="#a9a9a9" stroke="#a9a9a9" stroke-width="1.5" points="726.5,-163.81 722.01,-161 723.77,-165.99 726.5,-163.81"/>
+<text text-anchor="middle" x="786.06" y="-199.7" font-family="Times,serif" font-size="14.00">relies on</text>
+</g>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="red" cx="881.81" cy="-679.5" rx="27" ry="18"/>
+<text text-anchor="middle" x="881.81" y="-675.23" font-family="Times,serif" font-size="12.00">Love</text>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="blue" cx="512.81" cy="-555" rx="38.8" ry="18"/>
+<text text-anchor="middle" x="512.81" y="-550.73" font-family="Times,serif" font-size="12.00">Emotions</text>
+</g>
+<!-- 3 -->
+<g id="node3" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="blue" cx="881.81" cy="-483" rx="45" ry="18"/>
+<text text-anchor="middle" x="881.81" y="-478.73" font-family="Times,serif" font-size="12.00">Attachment</text>
+</g>
+<!-- 4 -->
+<g id="node4" class="node">
+<title>4</title>
+<ellipse fill="none" stroke="blue" cx="983.81" cy="-267" rx="47.38" ry="18"/>
+<text text-anchor="middle" x="983.81" y="-262.73" font-family="Times,serif" font-size="12.00">Compassion</text>
+</g>
+<!-- 5 -->
+<g id="node5" class="node">
+<title>5</title>
+<ellipse fill="none" stroke="green" cx="569.81" cy="-411" rx="56.92" ry="18"/>
+<text text-anchor="middle" x="569.81" y="-406.73" font-family="Times,serif" font-size="12.00">Romantic Love</text>
+</g>
+<!-- 6 -->
+<g id="node6" class="node">
+<title>6</title>
+<ellipse fill="none" stroke="green" cx="290.81" cy="-411" rx="52.15" ry="18"/>
+<text text-anchor="middle" x="290.81" y="-406.73" font-family="Times,serif" font-size="12.00">Platonic Love</text>
+</g>
+<!-- 7 -->
+<g id="node7" class="node">
+<title>7</title>
+<ellipse fill="none" stroke="green" cx="48.81" cy="-339" rx="48.81" ry="18"/>
+<text text-anchor="middle" x="48.81" y="-334.73" font-family="Times,serif" font-size="12.00">Family Love</text>
+</g>
+<!-- 8 -->
+<g id="node8" class="node">
+<title>8</title>
+<ellipse fill="none" stroke="green" cx="707.81" cy="-142.5" rx="40.23" ry="18"/>
+<text text-anchor="middle" x="707.81" y="-138.22" font-family="Times,serif" font-size="12.00">Self&#45;Love</text>
+</g>
+<!-- 9 -->
+<g id="node9" class="node">
+<title>9</title>
+<ellipse fill="none" stroke="blue" cx="849.81" cy="-18" rx="36.41" ry="18"/>
+<text text-anchor="middle" x="849.81" y="-13.72" font-family="Times,serif" font-size="12.00">Altruism</text>
+</g>
+<!-- 10 -->
+<g id="node10" class="node">
+<title>10</title>
+<ellipse fill="none" stroke="blue" cx="983.81" cy="-142.5" rx="37.37" ry="18"/>
+<text text-anchor="middle" x="983.81" y="-138.22" font-family="Times,serif" font-size="12.00">Empathy</text>
+</g>
+<!-- 11 -->
+<g id="node11" class="node">
+<title>11</title>
+<ellipse fill="none" stroke="green" cx="638.81" cy="-267" rx="61.69" ry="18"/>
+<text text-anchor="middle" x="638.81" y="-262.73" font-family="Times,serif" font-size="12.00">Unrequited Love</text>
+</g>
+<!-- 12 -->
+<g id="node12" class="node">
+<title>12</title>
+<ellipse fill="none" stroke="blue" cx="447.81" cy="-18" rx="33.07" ry="18"/>
+<text text-anchor="middle" x="447.81" y="-13.72" font-family="Times,serif" font-size="12.00">Passion</text>
+</g>
+<!-- 13 -->
+<g id="node13" class="node">
+<title>13</title>
+<ellipse fill="none" stroke="green" cx="261.81" cy="-267" rx="42.61" ry="18"/>
+<text text-anchor="middle" x="261.81" y="-262.73" font-family="Times,serif" font-size="12.00">Infatuation</text>
+</g>
+<!-- 14 -->
+<g id="node14" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="green" cx="141.81" cy="-267" rx="41.18" ry="18"/>
+<text text-anchor="middle" x="141.81" y="-262.73" font-family="Times,serif" font-size="12.00">Obsession</text>
+</g>
+<!-- 15 -->
+<g id="node15" class="node">
+<title>15</title>
+<ellipse fill="none" stroke="purple" cx="805.81" cy="-267" rx="68.85" ry="18"/>
+<text text-anchor="middle" x="805.81" y="-262.73" font-family="Times,serif" font-size="12.00">Attachment Theory</text>
+</g>
+</g>
+</svg>
