@@ -1,3 +1,4 @@
+import logging
 import sys
 import threading
 import time
@@ -6,12 +7,14 @@ from pathlib import Path
 
 import instructor
 import openai
+import streamlit as st
 from graphviz import Digraph
 from pydantic import ValidationError
 from pyvis.network import Network
-import streamlit as st
+
 from models import KnowledgeGraph
 
+logging.basicConfig(level=logging.INFO)
 
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
@@ -96,6 +99,7 @@ def visualize_knowledge_graph_interactive(kg, name, directory):
         nt.add_edge(edge.source, edge.target, label=edge.label, color=edge.color)
 
     nt.save_graph(str(filepath))
+    logging.info(f"Saved interactive graph to: {filepath}")
     return filepath
 
 
@@ -137,6 +141,7 @@ def visualize_knowledge_graph(kg, name, directory):
         )
 
     dot.render(filename=str(filepath))
+    logging.info(f"Saved graph to: {filepath}")
     return filepath
 
 

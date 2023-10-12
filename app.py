@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 
 import streamlit as st
@@ -9,6 +10,9 @@ from knowledge_graph import (
     visualize_knowledge_graph_interactive,
 )
 from models import KnowledgeGraph
+
+logging.basicConfig(level=logging.INFO)
+
 
 st.set_page_config(
     page_title="Pansophy",
@@ -45,6 +49,10 @@ def delete_topic_graph(directory_path):
 def render_topic_graph(directory_path, topic):
     svg_path, html_path = get_file_paths(directory_path, topic)
 
+    # Debug: Log all files in the directory
+    files_in_directory = list(directory_path.iterdir())
+    logging.info(f"Files in directory {directory_path}: {files_in_directory}")
+
     if svg_path.exists():
         st.image(str(svg_path))
     else:
@@ -55,6 +63,9 @@ def render_topic_graph(directory_path, topic):
 
 
 def main():
+    items_in_graphs_directory = list(GRAPHS_DIR.rglob("*"))
+    logging.info(f"Items in GRAPHS_DIR ({GRAPHS_DIR}): {items_in_graphs_directory}")
+
     st.title("Pansophy 📚🧠💡")
 
     tab1, tab2 = st.tabs(["Create", "History"])
