@@ -10,7 +10,6 @@ from knowledge_graph import (
     visualize_knowledge_graph_interactive,
 )
 from models import KnowledgeGraph
-from utils import log_directory_tree
 
 logging.basicConfig(level=logging.INFO)
 
@@ -60,9 +59,6 @@ def render_topic_graph(directory_path, topic):
 
 
 def main():
-    # Debug: Recursively log directory structure in tree format
-    log_directory_tree(GRAPHS_DIR)
-
     st.title("Pansophy 📚🧠💡")
 
     tab1, tab2 = st.tabs(["Create", "History"])

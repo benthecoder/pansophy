@@ -1,0 +1,27 @@
+// knowledge graph
+digraph {
+	bgcolor="#F5F5F5" nodesep=0.5 outputorder=edgesfirst overlap=false pad=0.5 rankdir=TB ranksep=1
+	1 [label="Knowledge Graph" color="#FF0000" fontsize=12 gradientangle=90 shape=ellipse]
+	2 [label=Conceptualization color="#FF3300" fontsize=12 gradientangle=90 shape=ellipse]
+	3 [label="Structured Data" color="#FF6600" fontsize=12 gradientangle=90 shape=ellipse]
+	4 [label="Semantic Web" color="#FF9900" fontsize=12 gradientangle=90 shape=ellipse]
+	5 [label="Knowledge Representation" color="#FFCC00" fontsize=12 gradientangle=90 shape=ellipse]
+	6 [label=Ontology color="#FFFF00" fontsize=12 gradientangle=90 shape=ellipse]
+	7 [label="Graph Database" color="#CCFF00" fontsize=12 gradientangle=90 shape=ellipse]
+	8 [label="Machine Learning" color="#99FF00" fontsize=12 gradientangle=90 shape=ellipse]
+	9 [label="Natural Language Processing" color="#66FF00" fontsize=12 gradientangle=90 shape=ellipse]
+	10 [label="Knowledge Extraction" color="#33FF00" fontsize=12 gradientangle=90 shape=ellipse]
+	11 [label="Data Integration" color="#00FF00" fontsize=12 gradientangle=90 shape=ellipse]
+	12 [label="Knowledge Graph Applications" color="#00FF33" fontsize=12 gradientangle=90 shape=ellipse]
+	1 -> 2 [label=involves arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 3 [label=uses arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 4 [label="related to" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 5 [label=enables arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	5 -> 6 [label="is a type of" arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 7 [label=stores arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 8 [label=applies arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 9 [label=applies arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 10 [label=involves arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 11 [label=enables arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+	1 -> 12 [label=has arrowsize=0.5 color="#A9A9A9" penwidth=1.5]
+}
