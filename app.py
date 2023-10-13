@@ -80,7 +80,7 @@ def main():
 
     with tab1:
         st.header("Generate Knowledge Graph 🌐")
-        topic = st.text_input("enter a topic")
+        topic = st.text_input("enter a topic", placeholder="meaning of life")
 
         if topic:
             directory_path = GRAPHS_DIR / topic.replace(" ", "_").lower()
