@@ -83,6 +83,12 @@ def main():
         topic = st.text_input("enter a topic", placeholder="meaning of life")
 
         if topic:
+            # if empty string
+            if not topic.strip():
+                st.warning("Please enter a topic!")
+                return
+
+            topic = topic.strip()  # remove leading and trailing whitespace
             directory_path = GRAPHS_DIR / topic.replace(" ", "_").lower()
 
             if directory_path.exists():
