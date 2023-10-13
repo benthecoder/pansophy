@@ -59,7 +59,20 @@ def render_topic_graph(directory_path, topic):
 
 
 def main():
-    st.title("Pansophy 📚🧠💡")
+    st.image("img/logo.jpeg", use_column_width=True)
+
+    st.caption(
+        """
+    Welcome to Pansophy! 
+
+    [Pansophy](https://github.com/benthecoder/pansophy) is an innovative tool designed to help you visualize and understand any topic in depth. 
+
+    By leveraging the power of LLMs, Pansophy constructs detailed [knowledge graphs](https://en.wikipedia.org/wiki/Knowledge_graph) for your chosen topic, 
+    presenting both core concepts and intricate details in an interconnected manner. 
+    
+    Built with ❤️ by [Benedict Neo](https://www.bneo.xyz/)
+    """
+    )
 
     tab1, tab2 = st.tabs(["Create", "History"])
 
