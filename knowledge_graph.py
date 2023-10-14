@@ -188,7 +188,7 @@ def show_graph(topic, depth, directory_path):
     if not svg_path.exists() and not html_path.exists():
         graph: KnowledgeGraph = generate_graph(topic, depth)
 
-        save_edge_nodes(graph, name=topic, directory=directory_path)
+        save_edge_nodes(graph, directory=directory_path)
         visualize_knowledge_graph(graph, name=topic, directory=directory_path)
         visualize_knowledge_graph_interactive(
             graph, name=topic, directory=directory_path
@@ -203,7 +203,7 @@ def show_graph(topic, depth, directory_path):
     return graph
 
 
-def save_edge_nodes(graph, name, directory):
+def save_edge_nodes(graph, directory):
     edge_nodes = list_edge_nodes(graph)
     filepath = generate_file_path("edges", directory, "txt")
     with open(filepath, "w") as f:
