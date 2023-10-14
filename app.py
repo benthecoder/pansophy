@@ -8,7 +8,7 @@ from knowledge_graph import (
     generate_graph,
     visualize_knowledge_graph,
     visualize_knowledge_graph_interactive,
-    save_edge_nodes
+    save_edge_nodes,
 )
 from models import KnowledgeGraph
 
@@ -140,9 +140,7 @@ def main():
         [Pansophy](https://github.com/benthecoder/pansophy) 
         empowers you to visualize and delve deep into any topic. Leveraging the strength of LLMs, it crafts comprehensive [knowledge graphs](https://en.wikipedia.org/wiki/Knowledge_graph) to present both foundational concepts and intricate nuances in an interconnected web. 
         
-        Proudly built with ❤️ by 
-        - [Benedict Neo](https://www.bneo.xyz/).
-        - [Wei Chun](https://github.com/weichunnn).
+        Built with ❤️ by [Benedict Neo](https://www.bneo.xyz/) and Wei Chun](https://github.com/weichunnn)
         """
     )
 
