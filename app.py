@@ -29,7 +29,7 @@ GRAPHS_DIR = BASE_DIR / "graphs"
 def render_html(html_path: Path):
     with open(html_path, "r") as file:
         html_content = file.read()
-    components.html(html_content, height=800, width=1200)
+    components.html(html_content, height=800, width=1200, scrolling=True)
 
 
 def get_file_paths(directory_path, topic):
@@ -68,8 +68,7 @@ def deep_dive_options(directory_path, topic, div):
         with open(directory_path / "edges.txt", "r") as f:
             edge_nodes = f.read().splitlines()
 
-        st.subheader("Main concepts from the generated graph:")
-
+        st.subheader("Dive into a subtopic")
         options = edge_nodes
         options.insert(0, "None (Skip)")
         choice = st.selectbox(
@@ -86,9 +85,7 @@ def deep_dive_options(directory_path, topic, div):
 
 def show_graphs(directory_path, topic, div, depth="overview"):
     div.empty()  # clear previous block
-    if directory_path.exists():
-        st.write(f"Fetching pregenerated knowledge graph for {topic}...")
-    else:
+    if not directory_path.exists():
         with st.spinner(f"Generating knowledge graph for {topic}..."):
             try:
                 graph: KnowledgeGraph = generate_graph(topic, depth)
@@ -107,7 +104,7 @@ def show_graphs(directory_path, topic, div, depth="overview"):
 
 
 def create_tab():
-    st.header("Generate Knowledge Graph 🌐")
+    st.header("Discover Knowledge Graph 🌐")
 
     header = st.empty()
     with header.container():

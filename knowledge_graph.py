@@ -104,6 +104,45 @@ def visualize_knowledge_graph_interactive(kg, name, directory):
         nt.add_node(node.id, node.label, title=node.label, color=node.color)
     for edge in kg.edges:
         nt.add_edge(edge.source, edge.target, label=edge.label, color=edge.color)
+        
+    nt.set_options("""
+    var options = {
+      "nodes": {
+        "borderWidth": 2,
+        "size": 30,
+        "color": {
+          "border": "rgba(0,217,255,1)",
+          "background": "rgba(0,217,255,1)"
+        },
+        "font": {
+          "color": "black"
+        }
+      },
+      "edges": {
+        "color": {
+          "color": "rgba(128,128,128,1)",
+          "inherit": false
+        },
+        "smooth": false
+      },
+      "physics": {
+        "enabled": true,
+        "barnesHut": {
+          "gravitationalConstant": -2000,
+          "centralGravity": 0.3,
+          "springLength": 95,
+          "springConstant": 0.04,
+          "damping": 0.09,
+          "avoidOverlap": 0.1
+        },
+        "maxVelocity": 146.5,
+        "minVelocity": 0.1,
+        "solver": "barnesHut",
+        "timestep": 0.35,
+        "adaptiveTimestep": true
+      }
+    }
+    """)
 
     nt.save_graph(str(filepath))
     logging.info(f"Saved interactive graph to: {filepath}")
