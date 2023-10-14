@@ -161,3 +161,4 @@ cython_debug/
 
 
 .streamlit/secrets.toml
+graphs/

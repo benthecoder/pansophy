@@ -8,6 +8,7 @@ from knowledge_graph import (
     generate_graph,
     visualize_knowledge_graph,
     visualize_knowledge_graph_interactive,
+    list_edge_nodes,
 )
 from models import KnowledgeGraph
 
@@ -21,7 +22,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Absolute paths
 BASE_DIR = Path(__file__).resolve().parent
 GRAPHS_DIR = BASE_DIR / "graphs"
 
@@ -58,71 +58,104 @@ def render_topic_graph(directory_path, topic):
     render_html(str(html_path))
 
 
+def deep_dive_options(directory_path, topic, div):
+    header = st.empty()
+    if not (directory_path / "edges.txt").exists():
+        # backwards compatibility
+        return
+
+    with header.container():
+        with open(directory_path / "edges.txt", "r") as f:
+            edge_nodes = f.read().splitlines()
+
+        st.subheader("Main concepts from the generated graph:")
+
+        options = edge_nodes
+        options.insert(0, "None (Skip)")
+        choice = st.selectbox(
+            "Which concept would you like to dive deeper into?", options
+        )
+
+    if choice != "None (Skip)":
+        deeper_topic = choice
+        deeper_depth = "deep"
+        deeper_directory_path = GRAPHS_DIR / deeper_topic.replace(" ", "_").lower()
+        div.empty()
+        show_graphs(deeper_directory_path, deeper_topic, header, "deep")
+
+
+def show_graphs(directory_path, topic, div, depth="overview"):
+    div.empty()  # clear previous block
+    if directory_path.exists():
+        st.write(f"Fetching pregenerated knowledge graph for {topic}...")
+    else:
+        with st.spinner(f"Generating knowledge graph for {topic}..."):
+            try:
+                graph: KnowledgeGraph = generate_graph(topic, depth)
+                save_edge_nodes(graph, directory_path)
+                visualize_knowledge_graph(graph, name=topic, directory=directory_path)
+                visualize_knowledge_graph_interactive(
+                    graph, name=topic, directory=directory_path
+                )
+                st.success("Knowledge graph generated!")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
+
+    with div.container():
+        render_topic_graph(directory_path, topic)
+    deep_dive_options(directory_path, topic, div)
+
+
+def create_tab():
+    st.header("Generate Knowledge Graph 🌐")
+
+    header = st.empty()
+    with header.container():
+        topic = st.text_input("Enter a topic", placeholder="Meaning of life").strip()
+        depth = st.radio("Detail Level:", ["Overview", "Deep"], index=0).lower()
+
+        if not topic:
+            return st.warning("Please enter a topic!")
+
+    directory_path = GRAPHS_DIR / topic.replace(" ", "_").lower()
+    show_graphs(directory_path, topic, header)
+
+
+def history_tab():
+    st.header("Explore Knowledge Graphs")
+    existing_topics = [p.name for p in GRAPHS_DIR.iterdir() if p.is_dir()]
+    existing_topics = [t.replace("_", " ").title() for t in existing_topics]
+    selected_topic = st.selectbox("Select a topic", existing_topics, index=0)
+
+    if st.button("View"):
+        topic_directory = GRAPHS_DIR / selected_topic.replace(" ", "_").lower()
+        render_topic_graph(topic_directory, selected_topic)
+
+
 def main():
+    # Displaying the logo at the top of the page
     st.image("img/logo.jpeg", use_column_width=True)
 
-    st.caption(
+    st.title("Welcome to **Pansophy**!")
+
+    st.markdown(
         """
-    Welcome to Pansophy! 
-
-    [Pansophy](https://github.com/benthecoder/pansophy) is an innovative tool designed to help you visualize and understand any topic in depth. 
-
-    By leveraging the power of LLMs, Pansophy constructs detailed [knowledge graphs](https://en.wikipedia.org/wiki/Knowledge_graph) for your chosen topic, 
-    presenting both core concepts and intricate details in an interconnected manner. 
-    
-    Built with ❤️ by [Benedict Neo](https://www.bneo.xyz/)
-    """
+        [Pansophy](https://github.com/benthecoder/pansophy) 
+        empowers you to visualize and delve deep into any topic. Leveraging the strength of LLMs, it crafts comprehensive [knowledge graphs](https://en.wikipedia.org/wiki/Knowledge_graph) to present both foundational concepts and intricate nuances in an interconnected web. 
+        
+        Proudly built with ❤️ by 
+        - [Benedict Neo](https://www.bneo.xyz/).
+        - [Wei Chun](https://github.com/weichunnn).
+        """
     )
 
     tab1, tab2 = st.tabs(["Create", "History"])
 
-    existing_topics = [p.name for p in GRAPHS_DIR.iterdir() if p.is_dir()]
-
     with tab1:
-        st.header("Generate Knowledge Graph 🌐")
-        topic = st.text_input("enter a topic", placeholder="meaning of life")
-
-        if topic:
-            # if empty string
-            if not topic.strip():
-                st.warning("Please enter a topic!")
-                return
-
-            topic = topic.strip()  # remove leading and trailing whitespace
-            directory_path = GRAPHS_DIR / topic.replace(" ", "_").lower()
-
-            if directory_path.exists():
-                st.write(f"Fetching pregenerated knowledge graph for {topic}...")
-            else:
-                with st.spinner(f"Generating knowledge graph for {topic}..."):
-                    try:
-                        graph: KnowledgeGraph = generate_graph(topic)
-                        visualize_knowledge_graph(
-                            graph, name=topic, directory=directory_path
-                        )
-                        visualize_knowledge_graph_interactive(
-                            graph, name=topic, directory=directory_path
-                        )
-                        st.success("Knowledge graph generated!")
-                    except Exception as e:
-                        st.error(f"An error occurred: {e}")
-
-            render_topic_graph(directory_path, topic)
-
-            delete_button = st.button("🗑️ Delete this topic's graph")
-            if delete_button:
-                delete_topic_graph(directory_path)
-                st.success(f"'{topic}' knowledge graph deleted!")
+        create_tab()
 
     with tab2:
-        st.header("Explore Knowledge Graphs")
-        selected_topic = st.selectbox("select a topic", existing_topics, index=0)
-
-        submit = st.button("View")
-
-        if submit:
-            topic_directory = GRAPHS_DIR / selected_topic.replace(" ", "_").lower()
-            render_topic_graph(topic_directory, selected_topic)
+        history_tab()
 
 
 if __name__ == "__main__":

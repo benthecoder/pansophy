@@ -52,22 +52,31 @@ def generate_file_path(topic, directory, extension):
     return filepath
 
 
-def create_prompt(input):
+def create_prompt(input: str, depth: str) -> str:
+    depth_description = {
+        "overview": "Provide a high-level overview focusing on the core concepts and their direct relationships.",
+        "deep": """
+        Delve into a multi-layered detailed exploration of the topic. For each main node or concept:
+            - Branch out to its primary sub-concepts or details (1st layer).
+            - For each of these primary sub-concepts, further expand to their sub-details or related concepts (2nd layer).
+        Ensure at least three layers of depth in the graph.
+        """,
+    }
     return f"""
-    Construct a detailed and expansive knowledge graph for the topic '{input}'. Begin by identifying the core concepts directly related to the topic. For each of these concepts, further branch out to nodes that provide specific details or sub-concepts. Continuously expand upon each node, ensuring every concept is further elaborated upon, until a comprehensive understanding of the topic is achieved.
+    Construct a knowledge graph for the topic '{input}'. {depth_description.get(depth, '')}
 
     Key guidelines:
     - Avoid generic placeholders like "primary node" or "secondary node". Every node should represent a concrete concept or detail.
     - Describe the significance and relationship of each node to the overarching topic.
     - Define relationships with precision. For instance, specify if a node "is a type of", "results in", "is used for", "is an example of", etc.
-    - Assign each node an 'id', 'label', and 'color' based on its importance or depth in the topic (e.g., fundamental concepts might be red, detailed explanations blue, and so on).
+    - Assign each node an 'id', 'label', and 'color' based on its importance or depth in the topic (e.g., fundamental concepts might be red, primary sub-concepts orange, secondary sub-concepts blue, and so on).
     - If there's ambiguity in any node's placement or relevance, provide a brief reasoning or source for clarity.
 
-    Aim for a detailed, interconnected, and specific representation, ensuring that the essence of the topic is captured from all angles and depths.
-    """  # noqa: E501
+    Aim for a {depth}-level understanding, ensuring that the essence of the topic is captured from all angles and depths.
+    """
 
 
-def generate_graph(input, max_retries=3) -> KnowledgeGraph:
+def generate_graph(input, depth, max_retries=3) -> KnowledgeGraph:
     stop_event = threading.Event()
     t = threading.Thread(target=loading_animation, args=(stop_event,))
     t.start()
@@ -76,17 +85,15 @@ def generate_graph(input, max_retries=3) -> KnowledgeGraph:
         try:
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
-                messages=[{"role": "user", "content": create_prompt(input)}],
+                messages=[{"role": "user", "content": create_prompt(input, depth)}],
                 response_model=KnowledgeGraph,
             )
             stop_event.set()
             return response
         except ValidationError:
-            print(f"\nRetry attempt {_ + 1} failed. Trying again...")
+            logging.warning(f"\nRetry attempt {_ + 1} failed. Trying again...")
             continue
-
     stop_event.set()
-    raise Exception(f"Failed to generate graph after {max_retries} attempts.")
 
 
 def visualize_knowledge_graph_interactive(kg, name, directory):
@@ -145,17 +152,43 @@ def visualize_knowledge_graph(kg, name, directory):
     return filepath
 
 
-def user_interaction():
+def list_edge_nodes(kg: KnowledgeGraph):
+    nodes_with_edges = {edge.source for edge in kg.edges}
+
+    # Filter out nodes that don't have outgoing edges
+    return [node for node in kg.nodes if node.id not in nodes_with_edges]
+
+
+def get_depth_from_user():
+    depth = (
+        input("Enter the depth of the graph you want to generate (overview/deep): ")
+        .strip()
+        .lower()
+    )
+    if depth not in ["overview", "deep"]:
+        print("Invalid depth. Please enter either 'overview' or 'deep'.")
+        return get_depth_from_user()
+    return depth
+
+
+def get_topic_from_user():
     topic = input("Enter the topic you want to learn about: ")
-    directory_path = Path("graphs") / topic.replace(" ", "_").lower()
+    if not topic:
+        print("Invalid topic. Please enter a valid topic.")
+        return get_topic_from_user()
+    return topic
 
-    svg_path = directory_path / f"{topic.replace(' ', '_').lower()}.svg.svg"
-    html_path = directory_path / f"{topic.replace(' ', '_').lower()}.html"
 
-    # If both files exist, no need to regenerate
-    if not svg_path.exists() or not html_path.exists():
-        graph: KnowledgeGraph = generate_graph(topic)
+def show_graph(topic, depth, directory_path):
+    sanitized_topic = topic.replace(" ", "_").lower()
 
+    svg_path = directory_path / f"{sanitized_topic}.svg"
+    html_path = directory_path / f"{sanitized_topic}.html"
+
+    if not svg_path.exists() and not html_path.exists():
+        graph: KnowledgeGraph = generate_graph(topic, depth)
+
+        save_edge_nodes(graph, name=topic, directory=directory_path)
         visualize_knowledge_graph(graph, name=topic, directory=directory_path)
         visualize_knowledge_graph_interactive(
             graph, name=topic, directory=directory_path
@@ -166,6 +199,53 @@ def user_interaction():
         webbrowser.open("file://" + str(html_path.absolute()))
     else:
         webbrowser.open("file://" + str(svg_path.absolute()))
+
+    return graph
+
+
+def save_edge_nodes(graph, name, directory):
+    edge_nodes = list_edge_nodes(graph)
+    filepath = generate_file_path("edges", directory, "txt")
+    with open(filepath, "w") as f:
+        for node in edge_nodes:
+            f.write(node.label + "\n")
+
+
+def user_interaction():
+    topic = get_topic_from_user()
+    depth = get_depth_from_user()
+    directory_path = Path("graphs") / topic.replace(" ", "_").lower().lower()
+
+    graph = show_graph(topic, depth, directory_path)
+    edge_nodes = list_edge_nodes(graph)
+
+    while edge_nodes:
+        print("\nMain concepts from the generated graph:")
+        for idx, node in enumerate(edge_nodes, 1):
+            print(f"{idx}. {node.label}")
+
+        try:
+            choice = int(
+                input(
+                    "Which concept would you like to dive deeper into? (Enter the number or 0 to skip): "
+                )
+            )
+            if choice < 0 or choice > len(edge_nodes):
+                raise ValueError
+        except ValueError:
+            return print(
+                "Invalid choice. Please select a valid number from the list or 0 to skip."
+            )
+
+        if choice != 0:
+            deeper_topic = edge_nodes[choice - 1].label
+            deeper_depth = "deep"
+            graph = show_graph(deeper_topic, deeper_depth, directory_path)
+            edge_nodes = list_edge_nodes(graph)
+        else:
+            return print(
+                "Thank you for using the knowledge graph generator. Have a great day!"
+            )
 
 
 if __name__ == "__main__":
