@@ -8,7 +8,7 @@ from knowledge_graph import (
     generate_graph,
     visualize_knowledge_graph,
     visualize_knowledge_graph_interactive,
-    list_edge_nodes,
+    save_edge_nodes
 )
 from models import KnowledgeGraph
 
