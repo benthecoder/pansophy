@@ -92,11 +92,11 @@ def show_graphs(directory_path, topic, div, depth="overview"):
         with st.spinner(f"Generating knowledge graph for {topic}..."):
             try:
                 graph: KnowledgeGraph = generate_graph(topic, depth)
-                save_edge_nodes(graph, directory_path)
                 visualize_knowledge_graph(graph, name=topic, directory=directory_path)
                 visualize_knowledge_graph_interactive(
                     graph, name=topic, directory=directory_path
                 )
+                save_edge_nodes(graph, directory_path)
                 st.success("Knowledge graph generated!")
             except Exception as e:
                 st.error(f"An error occurred: {e}")
