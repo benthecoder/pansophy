@@ -80,7 +80,7 @@ def deep_dive_options(directory_path, topic, div):
         deeper_depth = "deep"
         deeper_directory_path = GRAPHS_DIR / deeper_topic.replace(" ", "_").lower()
         div.empty()
-        show_graphs(deeper_directory_path, deeper_topic, header, "deep")
+        show_graphs(deeper_directory_path, deeper_topic, header, deeper_depth)
 
 
 def show_graphs(directory_path, topic, div, depth="overview"):
@@ -115,7 +115,7 @@ def create_tab():
             return st.warning("Please enter a topic!")
 
     directory_path = GRAPHS_DIR / topic.replace(" ", "_").lower()
-    show_graphs(directory_path, topic, header)
+    show_graphs(directory_path, topic, header, depth)
 
 
 def history_tab():
