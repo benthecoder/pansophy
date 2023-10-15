@@ -51,15 +51,19 @@ def render_topic_graph(directory_path, topic):
 
     if svg_path.exists():
         st.image(str(svg_path))
+        with open(svg_path, "rb") as file:
+            st.download_button(
+                label="Download knowledge graph",
+                data=file,
+                file_name=f"{topic}.svg",
+                mime="image/svg+xml",
+            )
     else:
         st.error(f"File {svg_path} not found!")
 
+    st.divider()
     st.subheader("Interactive Knowledge Graph")
     render_html(str(html_path))
-
-    if st.button("Delete"):
-        delete_topic_graph(directory_path)
-        st.success(f"Deleted {topic}!")
 
 
 def deep_dive_options(directory_path, topic, div):
@@ -104,6 +108,11 @@ def show_graphs(directory_path, topic, div, depth="overview"):
 
     with div.container():
         render_topic_graph(directory_path, topic)
+
+    if st.button("Delete"):
+        delete_topic_graph(directory_path)
+        st.success(f"Deleted {topic}!")
+
     deep_dive_options(directory_path, topic, div)
 
 

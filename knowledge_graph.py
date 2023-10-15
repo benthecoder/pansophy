@@ -129,12 +129,12 @@ def visualize_knowledge_graph_interactive(kg, name, directory):
     "physics": {
         "enabled": true,
         "barnesHut": {
-        "gravitationalConstant": -4000, // increased repulsion
-        "centralGravity": 0.1,         // reduced central gravity
-        "springLength": 150,           // increased spring length
-        "springConstant": 0.02,        // reduced spring constant
+        "gravitationalConstant": -4000,
+        "centralGravity": 0.1,
+        "springLength": 150,
+        "springConstant": 0.02,
         "damping": 0.09,
-        "avoidOverlap": 0.5            // increased to avoid overlap
+        "avoidOverlap": 0.5
         },
         "maxVelocity": 146.5,
         "minVelocity": 0.1,
