@@ -57,6 +57,10 @@ def render_topic_graph(directory_path, topic):
     st.subheader("Interactive Knowledge Graph")
     render_html(str(html_path))
 
+    if st.button("Delete"):
+        delete_topic_graph(directory_path)
+        st.success(f"Deleted {topic}!")
+
 
 def deep_dive_options(directory_path, topic, div):
     header = st.empty()
@@ -127,10 +131,6 @@ def history_tab():
 
     if st.button("View"):
         render_topic_graph(topic_directory, selected_topic)
-
-        if st.button("Delete"):
-            delete_topic_graph(topic_directory)
-            st.success(f"Deleted {selected_topic}!")
 
 
 def main():
