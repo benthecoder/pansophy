@@ -123,10 +123,14 @@ def history_tab():
     existing_topics = [p.name for p in GRAPHS_DIR.iterdir() if p.is_dir()]
     existing_topics = [t.replace("_", " ").title() for t in existing_topics]
     selected_topic = st.selectbox("Select a topic", existing_topics, index=0)
+    topic_directory = GRAPHS_DIR / selected_topic.replace(" ", "_").lower()
 
     if st.button("View"):
-        topic_directory = GRAPHS_DIR / selected_topic.replace(" ", "_").lower()
         render_topic_graph(topic_directory, selected_topic)
+
+    if st.button("Delete"):
+        delete_topic_graph(topic_directory)
+        st.success(f"Deleted {selected_topic}!")
 
 
 def main():
